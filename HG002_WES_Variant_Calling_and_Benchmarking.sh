@@ -4,11 +4,19 @@
 # Setting environment (paths and directories)
 # -------------------------
 
+# This script is meant to be run step by step (section by section) and checked
+# after each stage, not fired as one unattended job: several steps take a long
+# time and later steps depend on files from earlier ones.
+# Create the main environment first:  conda env create -f environment.yml
+
+# Making `conda activate` work inside a script (non-interactive shell)
+source "$(conda info --base)/etc/profile.d/conda.sh"
+
 # Activating the conda environment
 conda activate ngs1
 
-# Project root path
-PROJ_DIR="$HOME/workdir/GATK_tutorial/project"
+# Project root path (override with:  PROJ_DIR=/path/to/project bash script.sh)
+PROJ_DIR="${PROJ_DIR:-$HOME/workdir/GATK_tutorial/project}"
 
 # Creating the project directory tree
 mkdir -p "$PROJ_DIR"
@@ -272,8 +280,9 @@ done
 # Calculating the stats
 for vcfgz in *_raw_variants_ann.vcf.gz; do
   out=${vcfgz%.vcf.gz}.stats.txt
-  JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \ # It gave us an error that it needs Java 11 or later, while the Conda environment's Java is 8
-
+  # rtg needs Java 11 or later, while the Conda environment has Java 8, so point
+  # JAVA_HOME at a system Java 11 (override with JAVA11_HOME if installed elsewhere)
+  JAVA_HOME="${JAVA11_HOME:-/usr/lib/jvm/java-11-openjdk-amd64}" \
     rtg vcfstats "$vcfgz" > "$out"
 done
 

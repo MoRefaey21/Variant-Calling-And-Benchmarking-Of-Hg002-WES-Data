@@ -1,0 +1,17 @@
+name: ngs1
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bwa
+  - samtools
+  - picard
+  - gatk4
+  - bedtools
+  - r-base
+  - r-ggplot2
+  - r-gridextra
+# Versions are deliberately unpinned; record the versions you ran with
+# (conda list --export > environment.lock.txt) for exact reproducibility.
+# hap.py needs its own Python 2.7 environment ("happyenv"), created in the script.

@@ -1,0 +1,10 @@
+*.bam
+*.bai
+*.fastq.gz
+*.fasta
+*.fai
+*.dict
+*.vcf
+*.vcf.gz
+*.tbi
+.DS_Store
