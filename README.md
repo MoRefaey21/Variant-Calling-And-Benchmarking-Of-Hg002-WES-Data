@@ -4,6 +4,8 @@ A reproducible variant calling and benchmarking pipeline applied to the GIAB HG0
 
 **Authors:** Mohammed Refaey, Yasmine M. Elgohary, Ahmad K. Ahmad
 
+**Contributions:** Mohammed Refaey designed and implemented the pipeline (alignment, deduplication, downsampling, BQSR, variant calling, filtering and hap.py benchmarking) and wrote the analysis.
+
 ## Question
 
 How does sequencing depth affect variant calling accuracy in whole-exome sequencing data, and at what coverage level do gains in precision, recall, and genotype concordance start to saturate? Answering this on a well-characterized truth sample (GIAB HG002) with properly exome-restricted depth estimation provides a practical reference for cost-effective study design.
